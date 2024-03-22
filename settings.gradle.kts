@@ -1,6 +1,7 @@
 pluginManagement {
 	repositories {
 		google()
+		maven("https://maven.aliyun.com/repository/public")
 		mavenCentral()
 		gradlePluginPortal()
 	}
@@ -11,20 +12,21 @@ dependencyResolutionManagement {
 	@Suppress("UnstableApiUsage")
 	repositories {
 		google()
+		maven("https://maven.aliyun.com/repository/public")
 		mavenCentral()
 	}
 }
 
 rootProject.name = "Jetpack"
 include(":app")
-include(":databinding")
+include(":jetpack:databinding")
+include(":jetpack:lifecycle")
+include(":jetpack:livedata")
+include(":jetpack:navigation")
+include(":jetpack:paging")
+include(":jetpack:room")
+include(":jetpack:viewmodel")
+include(":jetpack:work")
 include(":kotlin")
-include(":livedata")
-include(":lifecycle")
-include(":mvvm")
-include(":mvi")
-include(":navigation")
-include(":paging")
-include(":room")
-include(":viewmodel")
-include(":work")
+include(":jetpack:jetpack")
+include(":compose")

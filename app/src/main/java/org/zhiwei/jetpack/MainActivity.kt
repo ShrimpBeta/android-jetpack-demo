@@ -1,61 +1,31 @@
 package org.zhiwei.jetpack
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import com.google.android.material.snackbar.Snackbar
-import org.zhiwei.jetpack.databinding.ActivityMainBinding
-import org.zhiwei.jetpack.work.WorkActivity
+import android.widget.LinearLayout
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : Activity() {
 
-	private lateinit var appBarConfiguration: AppBarConfiguration
-	private lateinit var binding: ActivityMainBinding
+    private val llKotlin: LinearLayout by lazy { findViewById(R.id.ll_kotlin_main) }
+    private val llJetpack: LinearLayout by lazy { findViewById(R.id.ll_jetpack_main) }
+    private val llCompose: LinearLayout by lazy { findViewById(R.id.ll_compose_main) }
 
-	override fun onCreate(savedInstanceState: Bundle?) {
-		super.onCreate(savedInstanceState)
 
-		binding = ActivityMainBinding.inflate(layoutInflater)
-		setContentView(binding.root)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        //此界面在AndroidManifest中使用了theme 无标题栏，有颜色的导航栏和状态栏，
+        // 注意和kotlin界面，jetpack界面，compose界面的样式区分，它们分别使用不同的设置方式
+        setContentView(R.layout.activity_main)
+        llKotlin.setOnClickListener { startActivity(Intent(JETPACK_INTENT_ACTION_KOTLIN)) }
+        llJetpack.setOnClickListener { startActivity(Intent(JETPACK_INTENT_ACTION_JETPACK)) }
+        llCompose.setOnClickListener { startActivity(Intent(JETPACK_INTENT_ACTION_COMPOSE)) }
+    }
 
-		setSupportActionBar(binding.toolbar)
+    companion object {
+        const val JETPACK_INTENT_ACTION_KOTLIN = "org.zhiwei.jetpack.KOTLIN_ACTIVITY"
+        const val JETPACK_INTENT_ACTION_JETPACK = "org.zhiwei.jetpack.JETPACK_ACTIVITY"
+        const val JETPACK_INTENT_ACTION_COMPOSE = "org.zhiwei.jetpack.COMPOSE_ACTIVITY"
+    }
 
-		val navController = findNavController(R.id.nav_host_fragment_content_main)
-		appBarConfiguration = AppBarConfiguration(navController.graph)
-		setupActionBarWithNavController(navController, appBarConfiguration)
-
-		binding.fab.setOnClickListener { view ->
-			Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-				.setAction("Action", null).show()
-			startActivity(Intent(this, WorkActivity::class.java))
-		}
-	}
-
-	override fun onCreateOptionsMenu(menu: Menu): Boolean {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		menuInflater.inflate(R.menu.menu_main, menu)
-		return true
-	}
-
-	override fun onOptionsItemSelected(item: MenuItem): Boolean {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		return when (item.itemId) {
-			R.id.action_settings -> true
-			else -> super.onOptionsItemSelected(item)
-		}
-	}
-
-	override fun onSupportNavigateUp(): Boolean {
-		val navController = findNavController(R.id.nav_host_fragment_content_main)
-		return navController.navigateUp(appBarConfiguration)
-				|| super.onSupportNavigateUp()
-	}
 }

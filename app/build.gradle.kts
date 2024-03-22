@@ -1,130 +1,67 @@
-
 plugins {
-	alias(libs.plugins.com.android.application)
-	alias(libs.plugins.org.jetbrains.kotlin.android)
-	//使用ksp替代kapt 第2步，在模块的build.gradle中添加plugins
-	alias(libs.plugins.ksp)
-	id("kotlin-parcelize")
+    alias(libs.plugins.com.android.application)
+    alias(libs.plugins.org.jetbrains.kotlin.android)
 }
 
 android {
-	namespace = "org.zhiwei.jetpack"
-	compileSdk = 33
+    namespace = "org.zhiwei.jetpack"
+    compileSdk = 34
 
-	defaultConfig {
-		applicationId = "org.zhiwei.jetpack"
-		minSdk = 24
-		targetSdk = 33
-		versionCode = 200
-		versionName = "2.0.0"
+    defaultConfig {
+        applicationId = "org.zhiwei.jetpack"
+        minSdk = 24
+        targetSdk = 34
+        versionCode = 200
+        versionName = "2.0.0"
 
-		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-	}
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
 
-	buildTypes {
-		release {
-			isMinifyEnabled = false
-			proguardFiles(
-				getDefaultProguardFile("proguard-android-optimize.txt"),
-				"proguard-rules.pro"
-			)
-		}
-	}
-	compileOptions {
-		sourceCompatibility = JavaVersion.VERSION_17
-		targetCompatibility = JavaVersion.VERSION_17
-	}
-	kotlinOptions {
-		jvmTarget = "17"
-	}
-	buildFeatures {
-		viewBinding = true
-		//因为dataBinding的module中开启了dataBinding，主module也要开启，否则报错Failed resolution of: Landroidx/databinding/DataBinderMapperImpl;
-		dataBinding = true
-	}
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 
-	configurations {
-		// room 2.5.1中compiler依赖了老旧的com.intellij的annotations 12的包，与 org.jetbrains.annotations 13的包冲突了
-		implementation.configure { exclude(group = "com.intellij", module = "annotations") }
-	}
+    //使用动态模块的形式，用于隔离代码module的依赖
+    dynamicFeatures += setOf(":jetpack:jetpack", ":kotlin", ":compose")
+    //jetpack模块有dataBinding，所以这里要声明
+    buildFeatures { dataBinding = true }
+
 }
 
 dependencies {
+    //因为app使用的theme是material的,因为使用了dynamicFeature依赖的module，所以如果多个dynamic的模块有共同的依赖库，则app中需要添加
+    implementation(libs.material)
+    implementation(libs.constraintlayout)
+    //接入jetpack的动态module，需要通用依赖
+    implementation(libs.lifecycle.livedata.ktx)
+    implementation(libs.navigation.ui.ktx)
+    implementation(libs.work.runtime.ktx)
+    implementation(libs.blankj.utils)
 
-	// android official libs version
-	implementation(libs.activity.ktx)
-	implementation(libs.appcompat)
-	implementation(libs.constraintlayout)
-	implementation(libs.core.ktx)
-	implementation(libs.fragment.ktx)
-	implementation(libs.material)
-	implementation(libs.recyclerview)
-	implementation(libs.swiperefreshlayout)
+    //compose 相关 ,因为有dynamic的组件，compose的，所以宿主模块也要有必要的依赖，否则会报错。
+    //这里android闭包内不需要compose的compiler和buildFeature，如果是普通module的依赖，则需要主module也开启。
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.compose.ui)
 
 
-	// androidx 或 google 相关库
-	implementation(libs.androidx.biometric)
-	implementation(libs.androidx.browser)
-	implementation(libs.androidx.camera.camera2)
-	implementation(libs.androidx.core.splashscreen)
-	implementation(libs.androidx.dataStore.core)
-	implementation(libs.androidx.dataStore.preferences)
-	implementation(libs.androidx.drawerlayout)
-	implementation(libs.androidx.emoji2)
-	implementation(libs.androidx.exifinterface)
-	implementation(libs.androidx.metrics)
-	implementation(libs.androidx.preference)
-	implementation(libs.androidx.profileinstaller)
-	implementation(libs.androidx.startup)
-	implementation(libs.androidx.tracing)
-	implementation(libs.androidx.webkit)
-
-	// Jetpack Components libs version
-	implementation(libs.lifecycle.livedata.ktx)
-	implementation(libs.lifecycle.viewmodel.ktx)
-	implementation(libs.navigation.fragment.ktx)
-	implementation(libs.navigation.ui.ktx)
-	implementation(libs.room.compiler)
-	implementation(libs.room.runtime)
-	implementation(libs.room.ktx)
-	implementation(libs.paging.runtime.ktx)
-	implementation(libs.work.runtime.ktx)
-
-	// jetbrains official libs version
-	implementation(libs.kotlin.stdlib)
-	implementation(libs.kotlinx.coroutines.android)
-	implementation(libs.kotlinx.datetime)
-	implementation(libs.kotlinx.serialization.json)
-
-	// 常用知名开源库
-	implementation(libs.blankj.utils)
-	implementation(libs.coil.kt)
-	implementation(libs.coil.kt.svg)
-	implementation(libs.gson)
-	implementation(libs.koin)
-	implementation(libs.okhttp.logging)
-	implementation(libs.retrofit.core)
-	implementation(libs.retrofit.kotlin.serialization)
-	implementation(libs.retrofit2.converter.gson)
-
-	//test libs version
-	testImplementation(libs.turbine)
-	testImplementation(libs.junit)
-	androidTestImplementation(libs.androidx.test.ext.junit)
-	androidTestImplementation(libs.espresso.core)
-
-	//依赖其他模块
-	implementation(project(":databinding"))
-	implementation(project(":kotlin"))
-	implementation(project(":lifecycle"))
-	implementation(project(":livedata"))
-	implementation(project(":mvvm"))
-	implementation(project(":mvi"))
-	implementation(project(":navigation"))
-	implementation(project(":paging"))
-	implementation(project(":room"))
-	implementation(project(":viewmodel"))
-	implementation(project(":work"))
+    //test libs version
+    testImplementation(libs.turbine)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.espresso.core)
 
 
 }

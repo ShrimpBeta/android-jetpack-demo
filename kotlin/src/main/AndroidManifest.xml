@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:dist="http://schemas.android.com/apk/distribution">
 
-	<application>
-		<activity
-			android:name=".KotlinActivity"
-			android:launchMode="singleTop" />
-	</application>
+    <dist:module
+        dist:instant="false"
+        dist:title="@string/title_kotlin">
+        <dist:delivery>
+            <dist:install-time />
+        </dist:delivery>
+        <dist:fusing dist:include="true" />
+    </dist:module>
+
+    <application android:icon="@drawable/img_kotlin_hero">
+        <activity
+            android:name=".KotlinActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="org.zhiwei.jetpack.KOTLIN_ACTIVITY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+    </application>
 </manifest>

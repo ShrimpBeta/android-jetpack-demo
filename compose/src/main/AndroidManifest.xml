@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:dist="http://schemas.android.com/apk/distribution">
+
+    <dist:module
+        dist:instant="false"
+        dist:title="@string/title_compose">
+        <dist:delivery>
+            <dist:install-time />
+        </dist:delivery>
+        <dist:fusing dist:include="true" />
+    </dist:module>
+
+    <application android:icon="@drawable/img_compose_roadmap">
+        <activity
+            android:name=".ComposeActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="org.zhiwei.jetpack.COMPOSE_ACTIVITY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
