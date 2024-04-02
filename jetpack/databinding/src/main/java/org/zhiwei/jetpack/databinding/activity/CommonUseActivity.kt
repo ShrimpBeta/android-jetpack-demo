@@ -5,7 +5,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.databinding.DataBindingUtil
 import androidx.databinding.ObservableField
 import androidx.databinding.ObservableInt
 import org.zhiwei.jetpack.databinding.R
@@ -56,15 +55,16 @@ class CommonUseActivity : AppCompatActivity(), View.OnClickListener {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		//关联布局，binding对象
-		val binding = DataBindingUtil.setContentView<ActivityCommonUseBinding>(
-			this,
-			R.layout.activity_common_use
-		)
+		//关联布局，binding对象,
+//		val binding =DataBindingUtil.setContentView<ActivityCommonUseBinding>(this,R.layout.activity_common_use)
+		//如果使用下面的binding方式，就需要setContentView，上面一行等于下面两行。
+		val binding = ActivityCommonUseBinding.inflate(layoutInflater)
+		setContentView(binding.root)
 		//普通的类似java的方式，关联控件和注册事件
 		binding.btnChangeCommon.setOnClickListener(this)
 		binding.btnChangeField.setOnClickListener(this)
 		binding.btnChangeOb.setOnClickListener(this)
+        //todo 一般来说，MVVM模式下，这些数据都是在viewModel中配置，然后binding.vm = viewmodel即可。
 		//初始化user、fuser、obuser的对象，并赋值到binding中去
 		user = CommonUser("张三", 33, 1, "张家第三代庶支嫡传葵花宝典继承人")
 		binding.user = user
@@ -83,7 +83,7 @@ class CommonUseActivity : AppCompatActivity(), View.OnClickListener {
 		//lateinit延迟初始化
 		tvObservable = findViewById(R.id.tv_ob_user_info)
 		//checkbox的响应
-		binding.cbCommon.setOnCheckedChangeListener { button, checked ->
+		binding.cbCommon.setOnCheckedChangeListener { _, checked ->
 			//设置变量
 			binding.show = checked
 		}

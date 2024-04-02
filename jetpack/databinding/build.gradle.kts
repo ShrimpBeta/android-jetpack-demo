@@ -28,13 +28,15 @@ android {
 	buildFeatures {
 		//模块化中的databinding开启，则app主module中也要开启
 		dataBinding = true
+		//演示viewBinding
+		viewBinding = true
 	}
 	compileOptions {
-		sourceCompatibility = JavaVersion.VERSION_17
-		targetCompatibility = JavaVersion.VERSION_17
+		sourceCompatibility = JavaVersion.VERSION_1_8
+		targetCompatibility = JavaVersion.VERSION_1_8
 	}
 	kotlinOptions {
-		jvmTarget = "17"
+		jvmTarget = "1.8"
 	}
 }
 
@@ -49,6 +51,8 @@ dependencies {
 	implementation(libs.material)
 	implementation(libs.recyclerview)
 	implementation(libs.swiperefreshlayout)
+	implementation(libs.navigation.fragment.ktx)
+	implementation(libs.navigation.ui.ktx)
 
 	implementation(libs.coil.kt)
 	implementation(libs.coil.kt.svg)
