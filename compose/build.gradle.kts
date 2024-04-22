@@ -44,6 +44,7 @@ dependencies {
     implementation(libs.core.ktx)
     //compose 相关
     implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.lifecycle.runtimeCompose)
     implementation(libs.androidx.lifecycle.viewModelCompose)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.compose.runtime.livedata)
@@ -57,10 +58,18 @@ dependencies {
 
     implementation(libs.androidx.compose.ui.util)
     implementation(libs.androidx.compose.constraintlayout)
+    //material的compose的库，与material3的库不同，选择用一种风格即可。
+    implementation(libs.androidx.compose.material)
     implementation(libs.androidx.compose.material.iconsExtended)
     implementation(libs.androidx.compose.foundation)
     implementation(libs.androidx.compose.foundation.layout)
+//    implementation(libs.accompanist.systemuicontroller)
 
+    //图片加载库 compose版本的
+    implementation(libs.coil.kt.compose)
+
+
+    //测试相关的库
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)

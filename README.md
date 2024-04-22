@@ -23,20 +23,15 @@
 
 ####  一、项目简介
 
-> 不觉间项目已六年有余，Kotlin和Jetpack相关技术点也更新了很多，更成了为Android开发的技术首选。
-> `GitHub`上不乏很多`star`的`Jetpack`最佳实践，此项目定位于新手入门级教程，分组件逐步学习，明白其应用与原理，而后方可谈组合与架构。
-> 学习主要以项目代码为准，主要分三个部分模块：
->
-> 1. kotlin文件夹，下面是面向kotlin语言的初学教程，基本语法；学习之后，可以看懂kotlin代码，以及上手写kotlin，相信你用上kotlin之后，绝对不会再用回java。
-> 2. jetpack文件夹下，主要演示了通用的几个jetpack的组件liveData、lifecycle、viewmodel、paging、workmanager、navigation，databinding、room等。
-> 3. compose算是颠覆性或者革命性的一个Android UI的编写方式，我说的可能有点夸张，但是这种组合式的UI写法和设计思想，真的很不一样，用起来也没有了Android旧的view体系的那种臃肿感。
-> 4. 其他MVI，MVVM和jetpack的组件，可能会简便或者功能的形式，添加的App demo的功能块中。项目断断停停的，工作精力所限，**希望可以动手给star/fork点个赞**👍，有什么问题想法和建议可以提issue，谢谢，<font color="orange">**您的支持与鼓励，是我做项目的动力**</font>。
+学习主要以项目代码为准，主要分三个部分模块：
 
-<font color="green">**感谢支持的各位小伙伴，有技术问题或学习问题都可以在issues中留言**</font>
-
-**Android-Jetpack-Demo** 全新设计开发中,会集合当下Android应用开发的Kotlin语言相关技术知识点、Jetpack各组建的使用及相关原理源码分析文章等。
-
-**代码清理全新设计中,所以为空项目，历史代码可参照[source](https://github.com/iOrchid/android-jetpack-demo/releases/tag/v2.0.0-alpha01)这里下载。**
+1. `kotlin`文件夹，下面是面向kotlin语言的初学教程，基本语法；学习之后，可以上手写kotlin，相信你会爱上简约高效的语法糖。
+2. `jetpack`文件夹下，主要演示了通用的几个`jetpack`
+   的组件`liveData、lifecycle、viewmodel、paging、workmanager、navigation，databinding、room`等。
+3. `compose`算是颠覆性或者革命性的Android UI的编写方式，说的可能有点夸张h😝，但是这种组合式的UI写法和设计思想，真的很不一样，没有了臃肿感、倍儿清爽～。
+4. 其他`MVI/MVVM`和`jetpack`的组件，逐步会以简便功能形式添加。
+5. 项目断断停停的，工作精力所限，**希望可以动手给star/fork点个赞**👍，有什么问题想法和建议可以提**issue
+   **，谢谢，<font color="Green">**您的支持与鼓励，是我做项目的动力**</font>。
 
 #### 二、更新日志
 
@@ -44,8 +39,8 @@
   
   - 全新架构设计模块化分组演示Jetpack重要组件的功能使用，以及MVI架构和组件化、项目构建等
   - 使用`compose`的`UI`框架
-  
-  <img src="https://developer.android.google.cn/images/jetpack/compose/compose-roadmap.svg" alt="compose roadmap" style="zoom:50%;" />
+
+  ![compose](https://developer.android.google.cn/static/develop/ui/compose/images/compose-roadmap.png?hl=zh-cn)
   
 - v1.1.0（2019年6月27日）
   - 更新`AndroidStudio`以及`Gradle`编译版本
@@ -60,12 +55,9 @@
   - `databinding`的基础用法
   - `AAC`的初级使用
 
-#### 三、Sample示例(1.x版本的)
+#### 三、Sample示例
 
-[下载体验apk](https://raw.githubusercontent.com/iOrchid/android-jetpack-demo/master/docs/apk/app-release.apk)
-或者手机扫描二维码下载`Demo`的`apk`包；最新`apk`可下载代码自行构建。
-
-![扫描下载](./docs/images/QR_Jetpack.png)
+![gif](./docs/show/gif01.png)![gif](./docs/show/gif02.png)![gif](./docs/show/gif03.png)
 
 #### 四、项目组成[^1]
 
@@ -76,15 +68,22 @@
 的组件的进阶使用，`MVI/MVVM架构的实现`,后续会添加模块化与组件化的项目演示。
 
 - **kotlin**分包，主要演示语法基础，快速上手； [Kotlin语法拾遗](./kotlin/Kotlin语法拾遗.md)
-  - basic基础语法速览
-  - concepts语法概念基础详解
-  - collections集合相关的操作符解释
-  - coroutines协程相关的概念和操作符演示
-  - flow&channel
-- **jetpack** [Jetpack笔记速览](./jetpack/jetpack笔记速览.md)
+
+  - `basic`基础语法速览
+  - `concepts`语法概念基础详解
+  - `collections`集合相关的操作符解释
+  - `coroutines`协程相关的概念和操作符演示
+  - `flow&channel`
+
+- **Jetpack** [Jetpack笔记速览](./jetpack/jetpack笔记速览.md)
   分包下面会演示`livedata`、`lifecycle`、`viewmodel`、`databinding`、`paging`、`workmanager`、`navigation`、`room`
-  等核心库的使用与解析；
-- **compose**分包下会详细演示`compose`的学习笔记，从基础到整个UI实现；
+  等核心库的使用与解析
+
+- **Compose**分包下会详细演示`compose`的学习笔记，从基础到整个**UI**实现
+
+  按照页面顺序可逐步学习`compose`的使用，代码基本都有注释；**尤其注意⚠️带警示标记的注释，属于知识点。**
+
+  <img src="https://developer.android.google.cn/courses/jetpack-compose/images/course-logo.svg" alt="Compose Course" style="zoom:25%;" />
 
 在示例代码中会插入`MVI`和`MVVM`的架构实现。
 
@@ -183,7 +182,8 @@ limitations under the License.
 
 [![Stargazers over time](https://starchart.cc/iOrchid/android-jetpack-demo.svg)](https://starchart.cc/iOrchid/android-jetpack-demo)
 
-[^1]: 为研究最新`Jetpack`组件的版本和特性，项目当前`(2024/03/14)`开发环境为**AndroidStudio Iguana** `2023.2.1`、`gradle 8.3.0`、  `Jdk17`、`Kotlin 1.9.22`
+[^1]: 为研究最新`Jetpack`组件的版本和特性，项目当前`(2024/04/12)`开发环境为**AndroidStudio Iguana
+** `2023.2.1`、`gradle 8.3.2`、  `Jdk17`、`Kotlin 1.9.22`
 [^2]: **项目使用`AS`及相关环境配置可能与你本地不同，**参照 [配置gradle](https://github.com/iOrchid/android-jetpack-demo/issues/3#issuecomment-840276571)
 [^3]: 参照`Compose`项目有[compose cookbook](https://github.com/Gurupreet/ComposeCookBook)，[compose tutorial](https://github.com/SmartToolFactory/Jetpack-Compose-Tutorials),[compose codelab](https://github.com/android/codelab-android-compose),[compose sample](https://github.com/android/compose-samples) 致敬感谢
 

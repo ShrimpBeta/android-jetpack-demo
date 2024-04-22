@@ -4,7 +4,7 @@
 # android official libs version
 activity-ktx = "1.8.2"
 appcompat = "1.6.1"
-android-gradle-plugin = "8.3.1"# Android Studio Gradle Plugin 版本号
+android-gradle-plugin = "8.3.2"# Android Studio Gradle Plugin 版本号
 constraintlayout = "2.1.4"
 core-ktx = "1.12.0"
 fragment-ktx = "1.6.2"
@@ -30,7 +30,8 @@ webkit = "1.8.0"
 
 # compose
 
-androidxComposeBom = "2024.02.02"
+androidxComposeBom = "2024.04.00"
+androidxComposeUI = "1.6.5"
 androidxComposeRuntimeTracing = "1.0.0-beta01"
 androidxComposeConstraintlayout = "1.0.1"
 
@@ -47,14 +48,14 @@ work-ktx = "2.9.0"
 
 # jetbrains official libs version
 coroutines = "1.8.0"
-kotlin = "1.9.22"
+kotlin = "1.9.23"
 kotlinxDatetime = "0.5.0"
 kotlinxSerializationJson = "1.6.3"
 # 此处版本号，ksp与kotlin版本号有对应关系 https://github.com/google/ksp/releases
-ksp = "1.9.22-1.0.18"
+ksp = "1.9.23-1.0.20"
 # 此处是compose compiler版本号，和compose ui等版本不是一个概念，此版本号和kotlin版本号有适配对应关系
 # https://androidx.dev/storage/compose-compiler/repository
-composeCompiler = "1.5.10"
+composeCompiler = "1.5.11"
 # 常用知名开源库
 blankj-utils = "1.31.1"
 coil = "2.6.0"
@@ -68,8 +69,9 @@ retrofitKotlinxSerializationJson = "1.0.0"
 androidx-test-ext-junit = "1.1.5"
 espresso-core = "3.5.1"
 junit = "4.13.2"
+# 用于测试协程flow的test库
 turbine = "1.0.0"
-annotation = "1.6.0"# 用于测试协程flow的test库
+annotation = "1.7.1"
 #endregion
 
 # region 定义依赖库 🚀
@@ -107,6 +109,7 @@ androidx-compose-constraintlayout = { group = "androidx.constraintlayout", name 
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidxComposeBom" }
 androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
 androidx-compose-foundation-layout = { group = "androidx.compose.foundation", name = "foundation-layout" }
+androidx-compose-material = { group = "androidx.compose.material", name = "material", version.ref = "androidxComposeUI" }
 androidx-compose-material-iconsExtended = { group = "androidx.compose.material", name = "material-icons-extended" }
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-compose-material3-windowSizeClass = { group = "androidx.compose.material3", name = "material3-window-size-class" }
@@ -164,6 +167,7 @@ kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-
 blankj-utils = { group = "com.blankj", name = "utilcodex", version.ref = "blankj-utils" }
 coil-kt = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
 coil-kt-svg = { group = "io.coil-kt", name = "coil-svg", version.ref = "coil" }
+coil-kt-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 koin = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
