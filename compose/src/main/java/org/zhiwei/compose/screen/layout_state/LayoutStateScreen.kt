@@ -1,4 +1,4 @@
-package org.zhiwei.compose.screen.layout
+package org.zhiwei.compose.screen.layout_state
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.wrapContentHeight
@@ -15,15 +15,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import org.zhiwei.compose.model.LayoutScreenUIs
+import org.zhiwei.compose.model.LayoutStateScreenUIs
 
 @Composable
-fun LayoutScreen(navController: NavController) {
+fun LayoutState_Screen(navController: NavController) {
     //外部使用列容器LazyColumn，里面就是代码形式便捷创建多个列;LazyColumn就是类似与传统RecyclerView的列容器 ，
     // 如果多个item超出了屏幕，可实现滑动，而且不用代码手动些什么ViewHolder之类的性能管理缓存。
     LazyColumn {
         //后续会详细学习，LazyColumn内部排列多个item的时候，接收items的数据源，而后是每个item的Compose布局实现
-        items(LayoutScreenUIs.layoutCourses()) { model ->
+        items(LayoutStateScreenUIs.layoutCourses()) { model ->
             //每个item这里使用了ListItem，框架提供的简便的一个控件
             ListItem(
                 modifier = Modifier
@@ -45,5 +45,5 @@ fun LayoutScreen(navController: NavController) {
 @Preview
 @Composable
 private fun LayoutScreenPreview() {
-    LayoutScreen(navController = rememberNavController())
+    LayoutState_Screen(navController = rememberNavController())
 }

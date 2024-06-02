@@ -15,6 +15,7 @@ import androidx.compose.material3.Tab
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
@@ -31,11 +32,9 @@ import kotlinx.coroutines.launch
 import org.zhiwei.compose.model.TabPagerModel
 import org.zhiwei.compose.model.configPageRoute
 import org.zhiwei.compose.screen.basic.Basic_Screen
-import org.zhiwei.compose.screen.gesture.GestureScreen
-import org.zhiwei.compose.screen.graphics.GraphicsScreen
-import org.zhiwei.compose.screen.layout.LayoutScreen
-import org.zhiwei.compose.screen.state.StateScreen
-import org.zhiwei.compose.screen.theme.ThemeScreen
+import org.zhiwei.compose.screen.gesture.Gesture_Screen
+import org.zhiwei.compose.screen.graphics.Graphics_Screen
+import org.zhiwei.compose.screen.layout_state.LayoutState_Screen
 
 /**
  * Compose的主页面UI的screen,
@@ -91,11 +90,9 @@ private fun HomeScreenContent(modifier: Modifier, navController: NavController) 
         val tabPagerModels =
             listOf(
                 TabPagerModel("基础组件") { Basic_Screen(navController = navController) },
-                TabPagerModel("布局Layout") { LayoutScreen(navController) },
-                TabPagerModel("状态State") { StateScreen() },
-                TabPagerModel("手势Gesture") { GestureScreen() },
-                TabPagerModel("图像Graphics") { GraphicsScreen() },
-                TabPagerModel("Theme主题") { ThemeScreen() },
+                TabPagerModel("布局与状态") { LayoutState_Screen(navController) },
+                TabPagerModel("手势") { Gesture_Screen(navController) },
+                TabPagerModel("图像") { Graphics_Screen(navController) },
             )
         //这个是用于记录tabRow和Pager的状态，用于tab和pager的联动，后续会学到。
         val pagerState: PagerState = rememberPagerState(
@@ -125,7 +122,7 @@ private fun HomeScreenContent(modifier: Modifier, navController: NavController) 
             }
         }
         //viewPager，用于关联上面的tabLayout
-        HorizontalPager(state = pagerState) { page ->
+        HorizontalPager(state = pagerState, verticalAlignment = Alignment.Top) { page ->
             //注意此处model的page是个compose的函数，需要调用invoke或者函数体才能生效
             tabPagerModels[page].page()
         }
